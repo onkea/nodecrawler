@@ -33,7 +33,8 @@ currentcrawl = dateFormat(now, "yyyy-mm-dd");
 // Open connection to DB
 con.connect();
 
-getdomains = 'SELECT url, id, lastcraw FROM list WHERE lastcrawl > ' + currentcrawl +  ' LIMIT 100';
+// getdomains = 'SELECT url, id, lastcraw FROM list WHERE lastcrawl > ' + currentcrawl +  ' LIMIT 100';
+getdomains = 'SELECT url FROM list LIMIT 100';
 
 con.query(getdomains, function(err, rows, fields) {
 	if(err) throw err;
@@ -49,12 +50,11 @@ request('http://' + value.url, function (error, response, body) {
   if (!error && response.statusCode == 200) {
     console.log(body) // Show the HTML for the Google homepage.
   
-connection.query('UPDATE list SET lastcrawl = ?,source=? WHERE id = ?', [lastcrawl,body,value.id], function(err, result) {}
+// connection.query('UPDATE list SET lastcrawl = ?,source=? WHERE id = ?', [lastcrawl,body,value.id], function(err, result) {}
 
 }
-})
-
 });
+
 
 
 
